@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel - Gym System</title>
+
+    <link rel="stylesheet" href="css/variables.css" />
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/forms.css" />
+    <link rel="stylesheet" href="css/gym-cards.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script type="module" src="js/admin.js"></script>
+  </head>
+  <body>
+    <header class="header">
+      <div class="header-container">
+        <a href="index.html" class="brand-link">
+          Gym System <small>(Back to Site)</small>
+        </a>
+        <div class="auth-nav">
+          <span class="user-greeting">Admin Panel</span>
+          <button class="auth-nav-btn logout-btn">Logout</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-container">
+      <section class="w-full d-flex" style="justify-content: center">
+        <form class="auth-form add-gym-form">
+          <h2 class="form-heading">Add New Gym</h2>
+          <p class="status-message text-center"></p>
+
+          <div class="form-row">
+            <div class="form-group form-col-2">
+              <label class="form-label">Gym Name</label>
+              <input
+                type="text"
+                class="form-input gym-name"
+                required
+                placeholder="Sport Life"
+              />
+            </div>
+            <div class="form-group form-col-1">
+              <label class="form-label">Visit ($)</label>
+              <input
+                type="number"
+                class="form-input gym-one-time-price"
+                required
+                placeholder="50"
+              />
+            </div>
+            <div class="form-group form-col-1">
+              <label class="form-label">Month ($)</label>
+              <input
+                type="number"
+                class="form-input gym-monthly-price"
+                required
+                placeholder="500"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Address</label>
+            <input
+              type="text"
+              class="form-input gym-address"
+              required
+              placeholder="Main St, 12"
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Image URL (Unsplash)</label>
+            <input
+              type="text"
+              class="form-input gym-image"
+              placeholder="https://images.unsplash.com/..."
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Description</label>
+            <input
+              type="text"
+              class="form-input gym-desc"
+              placeholder="Optional description"
+            />
+          </div>
+
+          <div class="sections-area">
+            <h3 class="sections-title">Add Sections</h3>
+
+            <div class="section-inputs-row">
+              <div class="form-group form-col-2">
+                <label class="label-small">Section Name</label>
+                <input
+                  type="text"
+                  class="form-input section-name"
+                  placeholder="e.g. Big Pool"
+                />
+              </div>
+              <div class="form-group form-col-1">
+                <label class="label-small">Type</label>
+                <select class="form-input section-category">
+                  <option value="gym">Gym</option>
+                  <option value="pool">Pool</option>
+                  <option value="yoga">Yoga</option>
+                  <option value="boxing">Boxing</option>
+                  <option value="stretching">Stretching</option>
+                </select>
+              </div>
+              <div class="form-group form-col-1">
+                <label class="label-small">Capacity</label>
+                <input
+                  type="number"
+                  class="form-input section-capacity"
+                  placeholder="20"
+                />
+              </div>
+            </div>
+
+            <div class="form-group mt-sm">
+              <label class="label-small">Schedule</label>
+              <input
+                type="text"
+                class="form-input section-schedule"
+                placeholder="Mon-Fri 08:00-22:00"
+              />
+            </div>
+
+            <button type="button" class="btn-add-section">
+              + Add Section to List
+            </button>
+
+            <ul class="sections-list"></ul>
+          </div>
+
+          <button type="submit" class="btn-primary mt-md">Create Gym</button>
+        </form>
+      </section>
+
+      <section class="list-section mt-lg">
+        <h2 class="form-heading">Manage User Bookings</h2>
+        <div class="admin-bookings-list mt-md">
+          <p class="text-center">Loading bookings...</p>
+        </div>
+      </section>
+
+      <section class="list-section mt-lg mb-lg">
+        <h2 class="form-heading">📊 Financial Reports</h2>
+        <div class="reports-container mt-md">
+          <button
+            class="btn-primary max-w-200 mx-auto d-block"
+            id="btn-generate-report"
+          >
+            Generate Report
+          </button>
+
+          <div class="reports-output mt-md"></div>
+        </div>
+      </section>
+
+      <section class="list-section">
+        <h2 class="form-heading">Existing Gyms</h2>
+        <div class="admin-gym-list mt-md">
+          <p class="text-center">Loading data...</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

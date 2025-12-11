@@ -1,0 +1,14 @@
+:root {
+  --color-primary: #333333;
+  --color-secondary: #f1c40f;
+  --color-accent: #27ae60;
+  --color-danger: #e74c3c;
+  --color-bg: #f4f4f9;
+  --color-text: #555;
+  --color-white: #fff;
+  --color-border: #ddd;
+  --font-main: 'Rubik', sans-serif;
+  --spacing-sm: 1rem;
+  --spacing-md: 2rem;
+  --spacing-lg: 3rem;
+}

@@ -15,6 +15,19 @@ class NotificationController {
       res.status(500).json({ message: 'Error fetching notifications' });
     }
   }
+
+  async markRead(req, res) {
+    try {
+      const { userId } = req.params;
+      await Notification.updateMany(
+        { user: userId, isRead: false },
+        { isRead: true }
+      );
+      res.json({ success: true });
+    } catch (error) {
+      res.status(500).json({ message: 'Error marking read' });
+    }
+  }
 }
 
 module.exports = new NotificationController();

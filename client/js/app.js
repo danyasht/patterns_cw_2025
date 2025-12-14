@@ -11,7 +11,7 @@ class GymApp {
     this.authSection = document.querySelector('.header-auth-section');
     this.searchBar = document.querySelector('.search-input');
     this.categoryFilter = document.querySelector('.filter-category');
-    this.ageFilter = document.querySelector('.filter-age'); // <-- НОВЕ
+    this.ageFilter = document.querySelector('.filter-age'); 
 
     this.gymsCache = [];
     this.bookingModal = new BookingModal(this.renderUserHeader.bind(this));
@@ -33,7 +33,7 @@ class GymApp {
     }
   }
 
-  renderUserHeader(user) {
+  async renderUserHeader(user) {
     const adminLink =
       user.role === 'admin'
         ? `<a href="admin.html" class="auth-nav-link nav-highlight">★ Admin Panel</a>`
@@ -42,7 +42,11 @@ class GymApp {
     this.authSection.innerHTML = `
       ${adminLink} 
       <span class="nav-bonus">🏆 ${user.bonusPoints || 0}</span>
-      <a href="profile.html" class="auth-nav-link mr-md">My Profile</a>
+      
+      <div class="nav-link-wrapper">
+        <a href="profile.html" class="auth-nav-link mr-md" id="profile-link">My Profile</a>
+        </div>
+
       <span class="user-greeting mr-sm">Welcome, <strong>${
         user.name
       }</strong></span>
@@ -55,6 +59,22 @@ class GymApp {
         localStorage.removeItem('user');
         window.location.href = 'index.html';
       });
+
+    try {
+      const notifs = await ApiService.get(`/notifications/user/${user.id}`);
+
+      const unreadCount = notifs.filter((n) => !n.isRead).length;
+
+      if (unreadCount > 0) {
+        const badge = document.createElement('span');
+        badge.className = 'notification-badge';
+        badge.textContent = unreadCount > 9 ? '9+' : unreadCount;
+
+        this.authSection.querySelector('.nav-link-wrapper').appendChild(badge);
+      }
+    } catch (err) {
+      console.error('Failed to check notifications');
+    }
   }
 
   renderGuestHeader() {

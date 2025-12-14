@@ -22,6 +22,9 @@ class ProfileManager {
       this.loadUserInfo(user);
       this.loadData(user);
       this.loadNotifications(user.id);
+      ApiService.patch(`/notifications/read/${user.id}`, {}).catch(
+        console.error
+      );
     }
     if (this.logoutBtn) {
       this.logoutBtn.addEventListener('click', () => {
@@ -62,7 +65,6 @@ class ProfileManager {
     }
   }
 
-  // --- Subscriptions Render ---
   renderSubscriptions(subs, userId) {
     if (!this.subscriptionsList) return;
     this.subscriptionsList.innerHTML = '';
@@ -122,7 +124,6 @@ class ProfileManager {
       });
   }
 
-  // --- History Render ---
   renderBookings(bookings, userId) {
     this.bookingsList.innerHTML = '';
     if (!bookings || bookings.length === 0) {
@@ -180,7 +181,6 @@ class ProfileManager {
     });
   }
 
-  // --- Notifications ---
   async loadNotifications(userId) {
     if (!this.notificationsList) return;
 

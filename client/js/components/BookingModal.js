@@ -104,6 +104,15 @@ export default class BookingModal {
 
     const paymentMethod = this.bonusCheckbox.checked ? 'bonuses' : 'money';
 
+    const selectedDate = new Date(this.dateInput.value);
+    const dateNow = new Date();
+    dateNow.setHours(0, 0, 0, 0);
+
+    if (selectedDate < dateNow) {
+      UI.toast('Error: Invalid date!', 'error');
+      return;
+    }
+
     const bookingData = {
       userId: user.id,
       gymId: this.gymIdEl.value,

@@ -45,9 +45,6 @@ const gymSchema = new mongoose.Schema({
   },
 
   sections: [sectionSchema],
-  categoriesTags: {
-    type: [String],
-  },
 });
 
 module.exports = mongoose.model('Gym', gymSchema);
